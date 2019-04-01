@@ -63,12 +63,12 @@ function [J grad] = nnCostFunction(
   % size(y) = [m 1]
 
   X = [ones(m, 1), X]; % size(X) = [m 401]
-  a0 = X'; % size(a0) = [401 m]
-  z1 = Theta1 * a0; %' size(z1) = [25 m]
-  a1 = sigmoid(z1); % size(a1) = [25 m]
-  a1 = [ones(1, m); a1]; % size(a1) = [26 m]
-  z2 = Theta2 * a1; % size(z2) = [10 m]
-  a2 = sigmoid(z2); % size(a2) = [10 m]
+  a1 = X'; % size(a1) = [401 m]
+  z2 = Theta1 * a1; %' size(z2) = [25 m]
+  a2 = sigmoid(z2); % size(a2) = [25 m]
+  a2 = [ones(1, m); a2]; % size(a2) = [26 m]
+  z3 = Theta2 * a2; % size(z3) = [10 m]
+  a3 = sigmoid(z3); % size(a3) = [10 m]
 
   % Recode labels as vectors containing values 0 or 1
   yVec = zeros(m, num_labels);
@@ -79,7 +79,7 @@ function [J grad] = nnCostFunction(
 
   yVec = yVec';
 
-  h = a2;
+  h = a3;
   term1 = yVec .* log(h);
   term2 = (1 - yVec) .* log(1 - h);
   J = (-1) * sum(sum(term1 + term2)) / m;
