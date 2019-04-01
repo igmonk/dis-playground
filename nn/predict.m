@@ -11,8 +11,10 @@ function p = predict(Theta1, Theta2, X)
   % Return the following variables correctly
   p = zeros(size(X, 1), 1);
 
-  h1 = sigmoid([ones(m, 1) X] * Theta1');
-  h2 = sigmoid([ones(m, 1) h1] * Theta2');
-  [dummy, p] = max(h2, [], 2);
+  h0 = [ones(m, 1) X]'; % size(h0) = [401 m]
+  h1 = sigmoid(Theta1 * h0); % size(h1) = [25 m]
+  h1 = [ones(1, m); h1]; % size(h1) = [26 m]
+  h2 = sigmoid(Theta2 * h1); % size(h2) = [10 m]
+  [dummy, p] = max(h2', [], 2);
 
 end
