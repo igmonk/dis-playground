@@ -68,7 +68,7 @@ function [J grad] = nnCostFunction(
   a2 = sigmoid(z2); % size(a2) = [25 m]
   a2 = [ones(1, m); a2]; % size(a2) = [26 m]
   z3 = Theta2 * a2; % size(z3) = [10 m]
-  a3 = sigmoid(z3); % size(a3) = [10 m]
+  a3 = softMax(z3); % size(a3) = [10 m]
 
   % Recode labels as vectors containing values 0 or 1
   yVec = zeros(m, num_labels);
@@ -80,9 +80,7 @@ function [J grad] = nnCostFunction(
   yVec = yVec';
 
   h = a3;
-  term1 = yVec .* log(h);
-  term2 = (1 - yVec) .* log(1 - h);
-  J = (-1) * sum(sum(term1 + term2)) / m;
+  J = softMaxLoss(yVec, h, m);
 
   % Regularization
   % Do not regularize the terms that correspond to the bias (1st column of each theta matrix)
@@ -108,7 +106,7 @@ function [J grad] = nnCostFunction(
     a2 = sigmoid(z2); % size(a2) = [25 1]
     a2 = [1; a2]; % size(a2) = [26 1]
     z3 = Theta2 * a2; % size(z3) = [10 1]
-    a3 = sigmoid(z3); % size(a3) = [10 1]
+    a3 = softMax(z3); % size(a3) = [10 1]
 
     % Backpropagation - error terms
     delta3 = a3 - (yRange == y(i, :)); % size(delta3) = [10 1]
