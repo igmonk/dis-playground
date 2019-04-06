@@ -11,13 +11,13 @@ function convertFiles()
     '02-rhs',
     '03-m',
     '04-w',
-    '05-b',
-    '06-flag-down',
-    '07-flag-up',
-    '08-wedge-down',
-    '09-wedge-up',
-    '10-wv',
-    '11-ma'
+    '05-wv',
+    '06-ma',
+    '07-b',
+    '08-flag-down',
+    '09-flag-up',
+    '10-wedge-down',
+    '11-wedge-up'
   };
 
   len = numel(names);
