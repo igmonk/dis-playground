@@ -59,7 +59,7 @@ function [J grad] = nnCostFunction(
 
   % Part 1
   % size(Theta1) = [25 401]
-  % size(Theta2) = [10 26]
+  % size(Theta2) = [11 26]
   % size(y) = [m 1]
 
   X = [ones(m, 1), X]; % size(X) = [m 401]
@@ -67,12 +67,12 @@ function [J grad] = nnCostFunction(
   z2 = Theta1 * a1; %' size(z2) = [25 m]
   a2 = sigmoid(z2); % size(a2) = [25 m]
   a2 = [ones(1, m); a2]; % size(a2) = [26 m]
-  z3 = Theta2 * a2; % size(z3) = [10 m]
-  a3 = softMax(z3); % size(a3) = [10 m]
+  z3 = Theta2 * a2; % size(z3) = [11 m]
+  a3 = softMax(z3); % size(a3) = [11 m]
 
   % Recode labels as vectors containing values 0 or 1
   yVec = zeros(m, num_labels);
-  yRange = [1:num_labels]'; %' size(yRange) = [10 1]
+  yRange = [1:num_labels]'; %' size(yRange) = [11 1]
   for i=1:m
     yVec(i, :) = (yRange == y(i));
   endfor;
@@ -93,10 +93,10 @@ function [J grad] = nnCostFunction(
   % Part 2 - Backpropagation
   % size(X) = [m 401]
   % size(Theta1) = [25 401]
-  % size(Theta2) = [10 26]
+  % size(Theta2) = [11 26]
 
   Delta1 = zeros(size(Theta1)); % size(Delta1) = [25 401]
-  Delta2 = zeros(size(Theta2)); % size(Delta2) = [10 26]
+  Delta2 = zeros(size(Theta2)); % size(Delta2) = [11 26]
 
   for i=1:m
 
@@ -105,11 +105,11 @@ function [J grad] = nnCostFunction(
     z2 = Theta1 * a1; % size(z2) = [25 1]
     a2 = sigmoid(z2); % size(a2) = [25 1]
     a2 = [1; a2]; % size(a2) = [26 1]
-    z3 = Theta2 * a2; % size(z3) = [10 1]
-    a3 = softMax(z3); % size(a3) = [10 1]
+    z3 = Theta2 * a2; % size(z3) = [11 1]
+    a3 = softMax(z3); % size(a3) = [11 1]
 
     % Backpropagation - error terms
-    delta3 = a3 - (yRange == y(i, :)); % size(delta3) = [10 1]
+    delta3 = a3 - (yRange == y(i, :)); % size(delta3) = [11 1]
     delta2 = (Theta2' * delta3) .* [1; sigmoidGradient(z2)]; %'size(delta2) = [26 1]
     delta2 = delta2(2:end); % Skip delta2[0], size(delta2) = [25 1]
 

@@ -16,7 +16,8 @@ function convertFiles()
     '07-flag-up',
     '08-wedge-down',
     '09-wedge-up',
-    'circle'
+    '10-wv',
+    '11-ma'
   };
 
   len = numel(names);
