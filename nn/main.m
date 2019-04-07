@@ -74,6 +74,14 @@ pause;
 %  "predict" function is implemented to predict the labels of the training set.
 %  This lets us compute the training set accuracy.
 
+% Load Validation Data
+fprintf('Loading Data ...\n')
+
+load('../data/vs/img/20x20/xy.gen.mat');
+
+disp(size(X));
+disp(size(y));
+
 pred = predict(Theta1, Theta2, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
