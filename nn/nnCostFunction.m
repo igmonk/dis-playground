@@ -68,6 +68,7 @@ function [J grad] = nnCostFunction(
   a2 = sigmoid(z2); % size(a2) = [25 m]
   a2 = [ones(1, m); a2]; % size(a2) = [26 m]
   z3 = Theta2 * a2; % size(z3) = [11 m]
+  %a3 = sigmoid(z3); % size(a3) = [11 m]
   a3 = softMax(z3); % size(a3) = [11 m]
 
   % Recode labels as vectors containing values 0 or 1
@@ -80,6 +81,7 @@ function [J grad] = nnCostFunction(
   yVec = yVec';
 
   h = a3;
+  %J = sigmoidLoss(yVec, h, m);
   J = softMaxLoss(yVec, h, m);
 
   % Regularization
@@ -106,6 +108,7 @@ function [J grad] = nnCostFunction(
     a2 = sigmoid(z2); % size(a2) = [25 1]
     a2 = [1; a2]; % size(a2) = [26 1]
     z3 = Theta2 * a2; % size(z3) = [11 1]
+    %a3 = sigmoid(z3); % size(a3) = [11 1]
     a3 = softMax(z3); % size(a3) = [11 1]
 
     % Backpropagation - error terms
