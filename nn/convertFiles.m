@@ -1,18 +1,17 @@
-function convertFiles()
+function convertFiles(baseDir)
 
   X = [];
   y = [];
 
   separator = '/';
-  baseDir = '../data/ts/img/20x20';
   outFile = strcat(baseDir, separator, 'xy.gen.mat');
   names = {
     '01-hs',
     '02-rhs',
     '03-m',
     '04-w',
-    '05-wv',
-    '06-ma',
+    '05-ma',
+    '06-wv',
     '07-b',
     '08-flag-down',
     '09-flag-up',
